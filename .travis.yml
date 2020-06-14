@@ -1,0 +1,8 @@
+language: csharp
+solution: pogger.sln
+jobs:
+include:
+  - dotnet: 3.1.301
+  - mono: latest
+script:
+  - dotnet restore
