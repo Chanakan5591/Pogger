@@ -1,5 +1,6 @@
 language: csharp
 solution: pogger.sln
+os: windows
 jobs:
 include:
   - dotnet: 3.1.301
