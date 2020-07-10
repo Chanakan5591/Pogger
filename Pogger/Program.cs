@@ -39,8 +39,6 @@ namespace Pogger
             _client.SetGameAsync(Global.Status, null, ActivityType.Playing);
 
             _client.SetStatusAsync(UserStatus.Online);
-            
-            _client.MessageReceived += LogMessage;
 
             await RegisterCommandsAsync();
 
@@ -62,15 +60,6 @@ namespace Pogger
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"[Svt: {msg.Severity} Src: {msg.Source} Ex: {msg.Exception}] - " + msg.Message);
             }
-        }
-        
-        private async Task LogMessage(SocketMessage arg)
-        {
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            var msg = arg as SocketUserMessage;
-            if(msg.Author.IsBot) return;
-            Console.Write("Message from " + arg.Author + " in #" + msg.Channel.Name + ": ", ConsoleColor.Magenta);
-            Console.WriteLine(msg);
         }
 
         public async Task RegisterCommandsAsync()
