@@ -15,6 +15,11 @@ namespace Pogger.Modules
         public async Task Ping()
         {
             await ReplyAsync($"Pong: {Context.Client.Latency}ms!");
-        }        
+        }
+        [Command("ban")]
+        public async Task Ban()
+        {
+            
+        }
     }
 }

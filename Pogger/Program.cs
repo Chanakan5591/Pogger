@@ -69,7 +69,7 @@ namespace Pogger
             Console.ForegroundColor = ConsoleColor.Magenta;
             var msg = arg as SocketUserMessage;
             if(msg.Author.IsBot) return;
-            Console.Write("Message from " + arg.Author + ": ", ConsoleColor.Magenta);
+            Console.Write("Message from " + arg.Author + " in #" + msg.Channel.Name + ": ", ConsoleColor.Magenta);
             Console.WriteLine(msg);
         }
 
