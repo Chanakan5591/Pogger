@@ -30,7 +30,7 @@ namespace Pogger.Modules
                 await ReplyAsync("You cannot ban yourself, sorry!");
                 return;
             }
-            if(user.id == 720579758026522667) {
+            if(user.Id == 720579758026522667) {
                 await ReplyAsync("I cannot ban myself, sorry!");
                 return;
             }
@@ -67,11 +67,11 @@ namespace Pogger.Modules
                 await ReplyAsync("You cannot kick yourself, sorry!");
                 return;
             }
-            if(user.id == 720579758026522667) {
+            if(user.Id == 720579758026522667) {
                 await ReplyAsync("I cannot kick myself, sorry!");
                 return;
             }
-            await Context.Guild.AddKickAsync(user, 1, reason);
+            await user.KickAsync(reason);
             
             var EmbedBuilderReply = new EmbedBuilder();
             
