@@ -26,6 +26,10 @@ namespace Pogger.Modules
                 return;
             }
             if(reason == null) reason = "Not specified";
+            if(user.Id == Context.User.Id) {
+                await ReplyAsync("You cannot ban yourself, sorry!");
+                return;
+            }
             await Context.Guild.AddBanAsync(user, 1, reason);
             
             var EmbedBuilderReply = new EmbedBuilder();
