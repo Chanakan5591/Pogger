@@ -37,11 +37,17 @@ namespace Pogger.Modules
             await Context.Guild.AddBanAsync(user, 1, reason);
             
             var EmbedBuilderReply = new EmbedBuilder();
+            var EmbedBuilderDM = new EmbedBuilder();
             
             EmbedBuilderReply.WithTitle($":white_check_mark: {user.Mention} was banned");
             EmbedBuilderReply.AddField("Reason", reason, true);
             Embed embed = EmbedBuilderReply.Build();
             await ReplyAsync(embed: embed);
+            EmbedBuilderDM.WithTitle($"You have been banned from {Context.Guild.Name}!");
+            EmbedBuilderDM.AddField("Reason", reason, true);
+            Embed embedDM = EmbedBuilderDM.Build();
+            await user.SendMessageAsync(embed: embedDM);
+            
             
             ITextChannel logChannel = Context.Client.GetChannel(Global.ModLogChannel) as ITextChannel;
             var EmbedBuilderLog = new EmbedBuilder();
@@ -74,11 +80,16 @@ namespace Pogger.Modules
             await user.KickAsync(reason);
             
             var EmbedBuilderReply = new EmbedBuilder();
+            var EmbedBuilderDM = new EmbedBuilder();
             
             EmbedBuilderReply.WithTitle($":white_check_mark: {user.Mention} was kicked");
             EmbedBuilderReply.AddField("Reason", reason, true);
             Embed embed = EmbedBuilderReply.Build();
             await ReplyAsync(embed: embed);
+            EmbedBuilderDM.WithTitle($"You have been kicked from {Context.Guild.Name}!");
+            EmbedBuilderDM.AddField("Reason", reason, true);
+            Embed embedDM = EmbedBuilderDM.Build();
+            await user.SendMessageAsync(embed: embedDM);
             
             ITextChannel logChannel = Context.Client.GetChannel(Global.ModLogChannel) as ITextChannel;
             var EmbedBuilderLog = new EmbedBuilder();
