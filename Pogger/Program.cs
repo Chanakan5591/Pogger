@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -96,6 +93,16 @@ namespace Pogger
                             embedReplyU.WithColor(Color.Red);
                             Embed EmbedReplyU = embedReplyU.Build();
                             await context.Channel.SendMessageAsync(embed: EmbedReplyU);
+                            break;
+                        case "no_perm":
+                            var embedReplyUU = new EmbedBuilder();
+                            embedReplyUU.WithTitle("You do not have permission to execute this command");
+                            embedReplyUU.WithDescription("sorry, but you did not have the valid permission to execute this command :(");
+                            embedReplyUU.WithColor(Color.Red);
+                            Embed EmbedReplyUU = embedReplyUU.Build();
+                            await context.Channel.SendMessageAsync(embed: EmbedReplyUU);
+                            break;
+                        case "Unknown command.":
                             break;
                         default:
                             var embedReply2 = new EmbedBuilder();
