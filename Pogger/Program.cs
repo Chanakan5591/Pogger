@@ -77,17 +77,39 @@ namespace Pogger
             if (message.HasStringPrefix(Global.Prefix, ref argPos))
             {
                 var result = await _commands.ExecuteAsync(context, argPos, _services);
-                var embedReply = new EmbedBuilder();
                 if (result.Error != null)
                 {
                     switch (result.ErrorReason)
                     {
                         case "The server responded with error 403: Forbidden":
+                            var embedReply = new EmbedBuilder();
                             embedReply.WithTitle("You do not have permission to execute this command");
                             embedReply.WithDescription("sorry, but you did not have the valid permission to execute this command :(");
                             embedReply.WithColor(Color.Red);
                             Embed EmbedReply = embedReply.Build();
                             await context.Channel.SendMessageAsync(embed: EmbedReply);
+                            break;
+                        case "User not found.":
+                            var embedReplyU = new EmbedBuilder();
+                            embedReplyU.WithTitle("User Not Found");
+                            embedReplyU.WithDescription("sorry, but the ID you provided is probably invalid or the user is not in the server.");
+                            embedReplyU.WithColor(Color.Red);
+                            Embed EmbedReplyU = embedReplyU.Build();
+                            await context.Channel.SendMessageAsync(embed: EmbedReplyU);
+                            break;
+                        default:
+                            var embedReply2 = new EmbedBuilder();
+                            embedReply2.WithTitle("Uh oh! This shouldn't happen");
+                            embedReply2.WithDescription("I've dm'ed Chanakan the errors and it should be fix as soon as he read the errors.");
+                            embedReply2.WithColor(Color.Red);
+                            Embed EmbedReply2 = embedReply2.Build();
+                            await context.Channel.SendMessageAsync(embed: EmbedReply2);
+                            var embedDM = new EmbedBuilder();
+                            embedDM.WithTitle($"Error occurred in {context.Guild.Name}");
+                            embedDM.WithDescription($"The errors is: `{result.ErrorReason}`");
+                            Embed EmbedDM = embedDM.Build();
+                            SocketUser ChanakanUser = _client.GetUser(456961943505338369);
+                            await ChanakanUser.SendMessageAsync(embed: EmbedDM);
                             break;
                     }
                 }

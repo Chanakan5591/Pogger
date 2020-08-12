@@ -11,6 +11,15 @@ namespace Pogger.Modules
         {
             await ReplyAsync($"Pong: {Context.Client.Latency}ms!");
         }
+        [Command("help")]
+        public async Task Help()
+        {
+            var EmbedBuilderHelp = new EmbedBuilder();
+            
+            EmbedBuilderHelp.WithTitle("e");
+            Embed embed = EmbedBuilderHelp.Build();
+            await ReplyAsync(embed: embed);
+        }
         [Command("ban")]
         [RequireUserPermission(GuildPermission.BanMembers, ErrorMessage = "You need ``ban_member`` permission!")]
         public async Task Ban(IGuildUser userToBan = null, [Remainder] string reason = null)
@@ -37,7 +46,7 @@ namespace Pogger.Modules
                     await ReplyAsync("I cannot ban myself, sorry!");
                     return;
                 }
-                await Context.Guild.AddBanAsync(user, 1, reason);
+                await Context.Guild.AddBanAsync(user, 7, reason);
                 userInEmbed = user;
             }
             else
@@ -50,7 +59,7 @@ namespace Pogger.Modules
                     await ReplyAsync("I cannot ban myself, sorry!");
                     return;
                 }
-                //await Context.Guild.AddBanAsync(userToBan, 1, reason);
+                await Context.Guild.AddBanAsync(userToBan, 7, reason);
                 userInEmbed = userToBan;
             }
 
