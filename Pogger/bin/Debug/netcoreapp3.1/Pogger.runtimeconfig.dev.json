@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\chana\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\chana\\.nuget\\packages"
+    ]
+  }
+}
