@@ -8,6 +8,7 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using Pogger.Events;
 
 namespace Pogger
 {
@@ -22,6 +23,7 @@ namespace Pogger
         public async Task RunBotAsync()
         {
             Global.ReadConfig();
+            UserJoinEvent onUserJoinEvent = new UserJoinEvent();
             _client = new DiscordSocketClient(new DiscordSocketConfig
             {
                 LogLevel = LogSeverity.Debug,
@@ -35,17 +37,13 @@ namespace Pogger
                 .BuildServiceProvider();
 
             _client.Log += _client_Log;
-            
-            _client.SetGameAsync(Global.Status, null, ActivityType.Playing);
+            _client.UserJoined += onUserJoinEvent.OnUserJoin;
 
-            _client.SetStatusAsync(UserStatus.Online);
-
+            await _client.SetGameAsync(Global.Status, null, ActivityType.Playing);
+            await _client.SetStatusAsync(UserStatus.Online);
             await RegisterCommandsAsync();
-
             await _client.LoginAsync(TokenType.Bot, Global.Token);
-
             await _client.StartAsync();
-
             await Task.Delay(-1);
 
         }
@@ -71,6 +69,7 @@ namespace Pogger
         private async Task HandleCommandAsync(SocketMessage arg)
         {
             var message = arg as SocketUserMessage;
+            if (message == null) return;
             var context = new SocketCommandContext(_client, message);
             if (message.Author.IsBot) return;
 
@@ -78,8 +77,20 @@ namespace Pogger
             if (message.HasStringPrefix(Global.Prefix, ref argPos))
             {
                 var result = await _commands.ExecuteAsync(context, argPos, _services);
-                if (!result.IsSuccess) Console.WriteLine(result.ErrorReason);
-                if (result.Error.Equals(CommandError.UnmetPrecondition)) await message.Channel.SendMessageAsync(result.ErrorReason);
+                var embedReply = new EmbedBuilder();
+                if (result.Error != null)
+                {
+                    switch (result.ErrorReason)
+                    {
+                        case "The server responded with error 403: Forbidden":
+                            embedReply.WithTitle("You do not have permission to execute this command");
+                            embedReply.WithDescription("sorry, but you did not have the valid permission to execute this command :(");
+                            embedReply.WithColor(Color.Red);
+                            Embed EmbedReply = embedReply.Build();
+                            await context.Channel.SendMessageAsync(embed: EmbedReply);
+                            break;
+                    }
+                }
             }
         }
     }
