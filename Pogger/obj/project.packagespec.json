@@ -27,6 +27,10 @@
   "frameworks": {
     "netcoreapp3.1": {
       "dependencies": {
+        "Discord.Addons.CommandsExtension": {
+          "target": "Package",
+          "version": "[1.0.4, )"
+        },
         "Discord.Net": {
           "target": "Package",
           "version": "[2.2.0, )"

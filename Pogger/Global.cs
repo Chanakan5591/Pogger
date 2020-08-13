@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Discord;
 
 namespace Pogger
 {
@@ -9,7 +10,6 @@ namespace Pogger
 	{
 		public static string Token { get; set; }
 		public static string Prefix { get; set; }
-		public static List<ulong> HelpMsgObj = new List<ulong>();
 		public static String Status { get; set; }
 		public static ulong ModLogChannel { get; set; }
 

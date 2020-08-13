@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1+r4zGrgPd670gNCwS2BieOnm8EAPRRweFhpvmyX1geag8eBprsorQ52Dx5TTq32WUoeb0eotFX0sdp7RZ001Q==",
+  "dgSpecHash": "70gIP/MCelrNmffEQuuEsq1AJs4ZaBwgzRGSv6eKBTtfgKldVsykMQdf9MQ8N9KrR9sdWpFIyj9PBQHmeZpELA==",
   "success": true,
   "projectFilePath": "C:\\Users\\chana\\RiderProjects\\Pogger\\Pogger\\Pogger.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\chana\\.nuget\\packages\\discord.addons.commandsextension\\1.0.4\\discord.addons.commandsextension.1.0.4.nupkg.sha512",
     "C:\\Users\\chana\\.nuget\\packages\\discord.net\\2.2.0\\discord.net.2.2.0.nupkg.sha512",
     "C:\\Users\\chana\\.nuget\\packages\\discord.net.commands\\2.2.0\\discord.net.commands.2.2.0.nupkg.sha512",
     "C:\\Users\\chana\\.nuget\\packages\\discord.net.core\\2.2.0\\discord.net.core.2.2.0.nupkg.sha512",

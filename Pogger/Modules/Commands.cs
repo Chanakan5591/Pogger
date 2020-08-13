@@ -8,35 +8,12 @@ namespace Pogger.Modules
 {
     public class Commands : ModuleBase<SocketCommandContext>
     {
-        [Command("ping")]
+        [Command("ping"), Summary("Get the ping of the bot")]
         public async Task Ping()
         {
             await ReplyAsync($"Pong: {Context.Client.Latency}ms!");
         }
-        [Command("help")]
-        public async Task Help()
-        {
-            var funHelp = new EmbedBuilder();
-            var modHelp = new EmbedBuilder();
-
-            funHelp.WithTitle("Help");
-            funHelp.AddField($"{Global.Prefix}help", "Showing this message");
-            funHelp.AddField($"{Global.Prefix}ping", "Showing the ping of the bot");
-            funHelp.AddField($"{Global.Prefix}8ball", "Ask a question to 8ball!");
-            funHelp.WithColor(Color.Green);
-            modHelp.AddField($"{Global.Prefix}ban", $"Usage: {Global.Prefix}ban <user_mention_or_id> <reason>");
-            modHelp.AddField($"{Global.Prefix}kick", $"Usage: {Global.Prefix}kick <user_mention_or_id> <reason>");
-            modHelp.WithColor(Color.Green);
-            Embed funEmbed = funHelp.Build();
-            Embed modEmbed = modHelp.Build();
-            IMessage helpMsg = await ReplyAsync(embed: modEmbed);
-            var toolEmote = new Emoji("🛠️");
-            var funEmote = new Emoji("🎉");
-            await helpMsg.AddReactionAsync(toolEmote);
-            await helpMsg.AddReactionAsync(funEmote);
-            Global.HelpMsgObj.Add(helpMsg.Id);
-        }
-        [Command("8ball")]
+        [Command("8ball"), Summary("Ask the question to magic 8ball!")]
         public async Task EightBall([Remainder]String _)
         {
             List<string> responseList = new List<string> {"It is certain", "Without a doubt", "You may rely on it", "Yes definitely", "It is decidedly so", "As I see it, yes", "Most likely", "Yes", "Outlook good", "Signs point to yes", "Reply hazy try again", "Better not tell you now", "Ask again later", "Cannot predict now", "Concentrate and ask again", "Don't count on it", "Outlook not so good", "My sources say no", "Very doubtful", "My reply is no"};
@@ -44,7 +21,7 @@ namespace Pogger.Modules
             int randomItem = rnd.Next(responseList.Count);
             await ReplyAsync(responseList[randomItem]);
         }
-        [Command("ban")]
+        [Command("ban"), Summary("Usage:\n[PREFIX]ban <mention-user-or-user-id> <reason>")]
         [RequireUserPermission(GuildPermission.BanMembers, ErrorMessage = "no_perm")]
         public async Task Ban(IGuildUser userToBan = null, [Remainder] string reason = null)
         {
@@ -112,7 +89,7 @@ namespace Pogger.Modules
             await logChannel.SendMessageAsync(embed: embedLog);
         }
         
-        [Command("kick")]
+        [Command("kick"), Summary("Usage:\n[PREFIX]kick <mention-user-or-user-id> <reason>")]
         [RequireUserPermission(GuildPermission.KickMembers, ErrorMessage = "no_perm")]
         public async Task Kick(IGuildUser userToKick = null, [Remainder] string reason = null)
         {

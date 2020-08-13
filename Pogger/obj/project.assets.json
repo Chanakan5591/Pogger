@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Discord.Addons.CommandsExtension/1.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Discord.Net.Commands": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Discord.Addons.CommandsExtension.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Discord.Addons.CommandsExtension.dll": {}
+        }
+      },
       "Discord.Net/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -355,6 +367,19 @@
     }
   },
   "libraries": {
+    "Discord.Addons.CommandsExtension/1.0.4": {
+      "sha512": "75XFwPhGK76WdT/m2g0oeYcNCovHVDTD1RSZavDOazYyFpBPsf5Btal8rl8LQ3jnH2DQeMPnJEKC2yUUFbaPPQ==",
+      "type": "package",
+      "path": "discord.addons.commandsextension/1.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "discord.addons.commandsextension.1.0.4.nupkg.sha512",
+        "discord.addons.commandsextension.nuspec",
+        "lib/netstandard2.0/Discord.Addons.CommandsExtension.dll"
+      ]
+    },
     "Discord.Net/2.2.0": {
       "sha512": "D6X8Ap2yLEymJ0wfG8U1oW4zOaZThdjjg9XWrTD1CbEyCQzEEdauynNLEzZhw6b3RXeDdWVCyLdJIrSGObWNpg==",
       "type": "package",
@@ -1589,6 +1614,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Discord.Addons.CommandsExtension >= 1.0.4",
       "Discord.Net >= 2.2.0",
       "Microsoft.Extensions.Configuration >= 3.1.5",
       "Microsoft.Extensions.DependencyInjection >= 3.1.5"
@@ -1631,6 +1657,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Discord.Addons.CommandsExtension": {
+            "target": "Package",
+            "version": "[1.0.4, )"
+          },
           "Discord.Net": {
             "target": "Package",
             "version": "[2.2.0, )"

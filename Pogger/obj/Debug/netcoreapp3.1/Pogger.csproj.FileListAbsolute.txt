@@ -25,3 +25,4 @@ C:\Users\chana\RiderProjects\Pogger\Pogger\obj\Debug\netcoreapp3.1\Pogger.csproj
 C:\Users\chana\RiderProjects\Pogger\Pogger\obj\Debug\netcoreapp3.1\Pogger.dll
 C:\Users\chana\RiderProjects\Pogger\Pogger\obj\Debug\netcoreapp3.1\Pogger.pdb
 C:\Users\chana\RiderProjects\Pogger\Pogger\obj\Debug\netcoreapp3.1\Pogger.genruntimeconfig.cache
+C:\Users\chana\RiderProjects\Pogger\Pogger\bin\Debug\netcoreapp3.1\Discord.Addons.CommandsExtension.dll

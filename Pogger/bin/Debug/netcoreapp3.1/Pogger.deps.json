@@ -8,12 +8,24 @@
     ".NETCoreApp,Version=v3.1": {
       "Pogger/1.0.0": {
         "dependencies": {
+          "Discord.Addons.CommandsExtension": "1.0.4",
           "Discord.Net": "2.2.0",
           "Microsoft.Extensions.Configuration": "3.1.5",
           "Microsoft.Extensions.DependencyInjection": "3.1.5"
         },
         "runtime": {
           "Pogger.dll": {}
+        }
+      },
+      "Discord.Addons.CommandsExtension/1.0.4": {
+        "dependencies": {
+          "Discord.Net.Commands": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Discord.Addons.CommandsExtension.dll": {
+            "assemblyVersion": "1.0.4.0",
+            "fileVersion": "1.0.4.0"
+          }
         }
       },
       "Discord.Net/2.2.0": {
@@ -278,6 +290,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Discord.Addons.CommandsExtension/1.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-75XFwPhGK76WdT/m2g0oeYcNCovHVDTD1RSZavDOazYyFpBPsf5Btal8rl8LQ3jnH2DQeMPnJEKC2yUUFbaPPQ==",
+      "path": "discord.addons.commandsextension/1.0.4",
+      "hashPath": "discord.addons.commandsextension.1.0.4.nupkg.sha512"
     },
     "Discord.Net/2.2.0": {
       "type": "package",

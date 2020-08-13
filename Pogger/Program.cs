@@ -35,7 +35,6 @@ namespace Pogger
 
             _client.Log += _client_Log;
             _client.UserJoined += onUserJoinEvent.OnUserJoin;
-            _client.ReactionAdded += HandleHelpMsg;
 
             await _client.SetGameAsync(Global.Status, null, ActivityType.Playing);
             await _client.SetStatusAsync(UserStatus.Online);
@@ -63,19 +62,6 @@ namespace Pogger
             _client.MessageReceived += HandleCommandAsync;
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
         }
-
-        private async Task HandleHelpMsg(Cacheable<IUserMessage, ulong> msg, ISocketMessageChannel msgChannel, SocketReaction reactEmote)
-        {
-            if (reactEmote.User.Value.IsBot) return;
-            var toolEmote = new Emoji("🛠️");
-            if (!Global.HelpMsgObj.Contains(msg.Id)) return;
-            if (reactEmote.Emote.Equals(toolEmote))
-            {
-                var context = new SocketCommandContext(_client, reactEmote.Message.Value);
-                await context.Channel.SendMessageAsync("Tool Yes");
-            }
-        }
-        
         private async Task HandleCommandAsync(SocketMessage arg)
         {
             var message = arg as SocketUserMessage;
