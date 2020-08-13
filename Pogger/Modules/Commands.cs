@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -16,17 +17,25 @@ namespace Pogger.Modules
         [Command("help")]
         public async Task Help()
         {
-            var EmbedBuilderHelp = new EmbedBuilder();
-            
-            EmbedBuilderHelp.WithTitle("Help");
-            EmbedBuilderHelp.AddField($"{Global.Prefix}help", "Showing this message");
-            EmbedBuilderHelp.AddField($"{Global.Prefix}ping", "Showing the ping of the bot");
-            EmbedBuilderHelp.AddField($"{Global.Prefix}ban", $"Usage: {Global.Prefix}ban <user_mention_or_id> <reason>");
-            EmbedBuilderHelp.AddField($"{Global.Prefix}kick", $"Usage: {Global.Prefix}kick <user_mention_or_id> <reason>");
-            EmbedBuilderHelp.AddField($"{Global.Prefix}8ball", "Ask a question to 8ball!");
-            EmbedBuilderHelp.WithColor(Color.Green);
-            Embed embed = EmbedBuilderHelp.Build();
-            await ReplyAsync(embed: embed);
+            var funHelp = new EmbedBuilder();
+            var modHelp = new EmbedBuilder();
+
+            funHelp.WithTitle("Help");
+            funHelp.AddField($"{Global.Prefix}help", "Showing this message");
+            funHelp.AddField($"{Global.Prefix}ping", "Showing the ping of the bot");
+            funHelp.AddField($"{Global.Prefix}8ball", "Ask a question to 8ball!");
+            funHelp.WithColor(Color.Green);
+            modHelp.AddField($"{Global.Prefix}ban", $"Usage: {Global.Prefix}ban <user_mention_or_id> <reason>");
+            modHelp.AddField($"{Global.Prefix}kick", $"Usage: {Global.Prefix}kick <user_mention_or_id> <reason>");
+            modHelp.WithColor(Color.Green);
+            Embed funEmbed = funHelp.Build();
+            Embed modEmbed = modHelp.Build();
+            IMessage helpMsg = await ReplyAsync(embed: modEmbed);
+            var toolEmote = new Emoji("🛠️");
+            var funEmote = new Emoji("🎉");
+            Global.HelpMsgObj.Add(helpMsg.Id);
+            await helpMsg.AddReactionAsync(toolEmote);
+            await helpMsg.AddReactionAsync(funEmote);
         }
         [Command("8ball")]
         public async Task EightBall([Remainder]String _)
