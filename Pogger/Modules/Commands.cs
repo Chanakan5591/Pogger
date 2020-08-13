@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -33,9 +32,9 @@ namespace Pogger.Modules
             IMessage helpMsg = await ReplyAsync(embed: modEmbed);
             var toolEmote = new Emoji("🛠️");
             var funEmote = new Emoji("🎉");
-            Global.HelpMsgObj.Add(helpMsg.Id);
             await helpMsg.AddReactionAsync(toolEmote);
             await helpMsg.AddReactionAsync(funEmote);
+            Global.HelpMsgObj.Add(helpMsg.Id);
         }
         [Command("8ball")]
         public async Task EightBall([Remainder]String _)
